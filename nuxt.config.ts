@@ -6,6 +6,24 @@
 import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
+    app: {
+        head: {
+            charset: 'utf-8',
+            viewport: 'width=device-width, initial-scale=1',
+            title: 'Video Roll',
+            link: [
+                { rel: 'shortcut icon', href: '/favicon.png' },
+            ],
+            meta: [
+                // <meta name="description" content="My amazing site">
+                { name: 'description', content: 'Better watching by rolling' }
+            ],
+            noscript: [
+                // <noscript>Javascript is required</noscript>
+                { children: 'Javascript is required' }
+            ]
+        }
+    },
     build: {
         transpile:
             process.env.NODE_ENV === 'production'
