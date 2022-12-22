@@ -42,7 +42,7 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("/img/slidebg.png") no-repeat;
+    background: url("/img/bg.png") no-repeat;
     background-size: cover;
 }
 
