@@ -12,7 +12,7 @@ export default defineNuxtConfig({
             viewport: 'width=device-width, initial-scale=1',
             title: 'Video Roll',
             link: [
-                { rel: 'shortcut icon', href: '/favicon.png' },
+                { rel: 'shortcut icon', href: '/img/favicon.png' },
             ],
             meta: [
                 // <meta name="description" content="My amazing site">
