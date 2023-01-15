@@ -38,4 +38,26 @@ export default defineComponent({
 .n-config-provider {
     height: 100vh;
 }
+
+
+@media screen and (min-width: 321px) and (max-width: 375px) {
+	html {
+		font-size: 11px;
+	}
+}
+@media screen and (min-width: 376px) and (max-width: 414px) {
+	html {
+		font-size: 12px;
+	}
+}
+@media screen and (min-width: 415px) and (max-width: 799px) {
+	html {
+		font-size: 16px;
+	}
+}
+@media screen and (min-width: 800px) {
+	html {
+		font-size: 20px;
+	}
+}
 </style>

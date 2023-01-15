@@ -6,14 +6,67 @@
 <template>
     <div class="page-box">
         <div class="header-box">
-            <Header></Header>
+            <Header :options="options" v-model:value="activeKey" :showMenu="showMenu"></Header>
         </div>
         <div class="body-box">
             <slot name="body-box" />
         </div>
+        <n-menu v-show="isShowMenu" class="head__verticalMenu" v-model:value="activeKey" :root-indent="36" :indent="12"
+        :options="options" />
     </div>
 </template>
-<script></script>
+<script>
+import { NButton, NMenu, NIcon } from "naive-ui";
+import { MenuOutline } from "@vicons/ionicons5";
+export default defineComponent({
+    setup() {
+        const activeKey = ref("0");
+        const isShowMenu = ref(false);
+        const options = computed(() => [
+            {
+                label: "Home",
+                key: "0",
+                link: "",
+            },
+            {
+                label: "Download",
+                key: "1",
+                link: "",
+            },
+            {
+                label: "Demo",
+                key: "2",
+                link: "",
+            },
+            {
+                label: "Donation",
+                key: "3",
+                link: "",
+            },
+            {
+                label: "Language",
+                key: "4",
+                link: "",
+            },
+        ]);
+
+        const showMenu = () => isShowMenu.value = !isShowMenu.value;
+        return {
+            activeKey,
+            options,
+            isShowMenu,
+            showMenu
+        };
+    },
+    components: {
+        NButton,
+        NMenu,
+        NIcon,
+        MenuOutline
+    },
+});
+
+</script>
 
 <style lang="less">
 html,
@@ -73,5 +126,11 @@ body {
     width: 100%;
     height: 100%;
     flex: 1;
+}
+
+@media screen and (max-width: 1200px) {
+    .header-box {
+        padding: 0 40px;
+    }
 }
 </style>

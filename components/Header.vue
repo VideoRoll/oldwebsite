@@ -9,51 +9,58 @@
         <img class="logo__text" src="~/assets/img/text.png" />
     </div>
     <div class="head__right">
-        <NMenu v-model:value="activeKey" mode="horizontal" :options="options" />
+        <NMenu class="head__pcMenu" v-model:value="activeKey" mode="horizontal" :options="options" />
+        <div class="head__mobileMenu">
+            <n-button text @click="showMenu">
+                <template #icon>
+                    <n-icon size="20" class="menu-icon">
+                        <MenuOutline />
+                    </n-icon>
+                </template>
+            </n-button>
+        </div>
     </div>
 </template>
 
 <script>
-import { NButton, NMenu } from "naive-ui";
+import { NButton, NMenu, NIcon } from "naive-ui";
+import { MenuOutline } from "@vicons/ionicons5";
+import { watch } from 'vue';
 export default defineComponent({
+    props: {
+        options: {
+            type: Array,
+            default: []
+        },
+        showMenu: {
+            type: Function
+        },
+        value: {
+            type: String
+        }
+    },
     name: "Header",
-    setup() {
-        const activeKey = ref("0");
-        const options = computed(() => [
-            {
-                label: "Home",
-                key: "0",
-                link: "",
-            },
-            {
-                label: "Download",
-                key: "1",
-                link: "",
-            },
-            {
-                label: "Demo",
-                key: "2",
-                link: "",
-            },
-            {
-                label: "Donation",
-                key: "3",
-                link: "",
-            },
-            {
-                label: "Language",
-                key: "4",
-                link: "",
-            },
-        ]);
+    emits: ['update:value'],
+    setup(props, { emit }) {
+        const activeKey = ref(props.value);
+
+        watch(activeKey, (val) => {
+            emit('update:value', val);
+        });
+
+        watch(() => props.value, (val) => {
+            activeKey.value = val;
+        });
+        
         return {
-            activeKey,
-            options,
+            activeKey
         };
     },
     components: {
         NButton,
         NMenu,
+        NIcon,
+        MenuOutline
     },
 });
 </script>
@@ -64,12 +71,14 @@ export default defineComponent({
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
     .logo {
         width: 30px;
         height: 30px;
     }
 
     .logo__text {
+        display: none;
         height: 16px;
     }
 }
@@ -79,5 +88,46 @@ export default defineComponent({
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+    color: #fff;
+}
+
+.head__mobileMenu {
+    display: none;
+    align-items: center;
+}
+
+.head__pcMenu.n-menu.n-menu--horizontal {
+    display: none;
+    align-items: center;
+}
+
+.head__verticalMenu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+    background-color: rgba(24, 24, 28, 0.8);
+}
+
+@media screen and (max-width: 1200px) {
+    .head__mobileMenu {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .head__pcMenu.n-menu.n-menu--horizontal {
+        display: flex;
+    }
+}
+
+
+@media screen and (min-width: 600px) {
+    .head__left .logo__text {
+        display: block;
+    }
 }
 </style>
