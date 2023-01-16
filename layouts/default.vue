@@ -11,6 +11,9 @@
         <div class="body-box">
             <slot name="body-box" />
         </div>
+        <div class="footer-box">
+            
+        </div>
         <n-menu v-show="isShowMenu" class="head__verticalMenu" v-model:value="activeKey" :root-indent="36" :indent="12"
         :options="options" />
     </div>
