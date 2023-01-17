@@ -4,11 +4,11 @@
  * @Date: 2022-12-22 12:35:30
 -->
 <template>
-    
+    <div class="copy-right">Copyright © 2022-2023 Video Roll </div>
 </template>
 
 <script>
-import { NButton, NMenu, NIcon } from "naive-ui";
+import { NIcon } from "naive-ui";
 import { MenuOutline } from "@vicons/ionicons5";
 import { watch } from 'vue';
 export default defineComponent({
