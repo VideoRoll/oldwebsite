@@ -43,7 +43,8 @@ export default defineNuxtConfig({
                     : []
         },
         server: {
-            https: true
+            // https: true,
+            hmr: true
         }
     }
 })

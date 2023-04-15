@@ -5,7 +5,6 @@
 -->
 <template>
     <div class="head__left">
-        <img class="logo" src="~/assets/img/logo.png" />
         <img class="logo__text" src="~/assets/img/text.png" />
     </div>
     <div class="head__right">
@@ -72,11 +71,6 @@ export default defineComponent({
     justify-content: flex-start;
     align-items: center;
 
-    .logo {
-        width: 30px;
-        height: 30px;
-    }
-
     .logo__text {
         display: none;
         height: 16px;
@@ -103,6 +97,7 @@ export default defineComponent({
 
 .head__verticalMenu {
     position: fixed;
+    animation: showMenu 0.4s ease-in-out;
     top: 80px;
     left: 0;
     width: 100%;
@@ -110,6 +105,15 @@ export default defineComponent({
     z-index: 2;
     backdrop-filter: blur(5px);
     background-color: rgba(24, 24, 28, 0.8);
+}
+
+@keyframes showMenu {
+    0% {
+        transform: translateY(-50%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -121,6 +125,10 @@ export default defineComponent({
 @media screen and (min-width: 1200px) {
     .head__pcMenu.n-menu.n-menu--horizontal {
         display: flex;
+    }
+
+    .head__verticalMenu {
+        display: none;
     }
 }
 

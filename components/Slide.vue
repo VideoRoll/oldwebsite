@@ -7,14 +7,14 @@
     <div class="slide">
         <div class="slide__mask"></div>
         <div class="slide__left">
-            <n-gradient-text
-                class="video-roll-text"
-                type="info"
-                :gradient="{ from: '#6a38bc', to: '#a494c6', deg: 45 }"
-            >
+            <div class="slide__logo">
+                <img class="logo" src="~/assets/img/logo.png" />
+            </div>
+
+            <n-gradient-text class="video-roll-text" type="info" :gradient="{ from: '#ffffff', to: '#bb62a4', deg: 45 }">
                 Video Roll
             </n-gradient-text>
-            <p class="video-roll-desc">Better watching by rolling</p>
+            <p class="video-roll-desc">Easily enhance your video watching experience</p>
         </div>
     </div>
 </template>
@@ -46,22 +46,29 @@ export default defineComponent({
     background-size: cover;
 }
 
+.slide__logo {
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+
 .slide__mask {
     position: absolute;
     width: 100%;
     height: 100vh;
     top: 0;
-    background-image: linear-gradient(
-        to top,
-        #18181c 0%,
-        rgba(0, 0, 0, 0) 100%
-    );
+    background-image: linear-gradient(to top,
+            #18181c 0%,
+            rgba(0, 0, 0, 0) 100%);
 }
 
 .slide__left {
     text-align: center;
     z-index: 1;
 }
+
 .video-roll-text {
     font-size: 3.5rem;
     font-weight: bold;
@@ -70,7 +77,7 @@ export default defineComponent({
 }
 
 .video-roll-desc {
-    font-size: 2.5rem;
+    font-size: 2.0rem;
     color: #fff;
     user-select: none;
     padding: 0;
